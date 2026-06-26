@@ -27,4 +27,4 @@ I don't know exactly how sites are indexed by search engines, but I'm fairly cer
 Greek letters get messed up CipherFont because a few of them, like captial alpha, get their glyphs from the Latin letters. 
 
 ## Future Plans
-In the future, I plan to also shuffle numbers around, since by default they are not. Also, I plan to use some of the unused unicode values in Liberation to implement a frequency based substitution cipher for greater security.
+In the future, I plan to use some of the unused unicode values in Liberation to implement a frequency based substitution cipher for greater security.
