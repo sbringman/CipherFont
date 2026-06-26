@@ -32,7 +32,7 @@ if not os.path.exists(target_dir):
 with open("key.json", "r") as f:
     key = json.load(f)
 
-def create_cipher_font(template_dir,
+def create_cipher_font(template_dir, 
                         new_dir,
                         template_name,
                         new_name,

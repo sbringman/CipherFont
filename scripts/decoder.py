@@ -26,7 +26,7 @@ with open(args.input_file, "r") as f:
 # Decode text
 output_string = ""
 for c in input_string:
-    if not c.isalpha():
+    if not c.isalnum():
         output_string += c
         continue
 
@@ -45,3 +45,5 @@ for c in input_string:
 # Write out text
 with open(args.output_file, "w") as f:
     f.write(output_string)
+
+print(f"Output written to: {args.output_file}")
