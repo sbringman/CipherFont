@@ -28,8 +28,8 @@ target_dir = "../Fonts/CipherFont/"
 if not os.path.exists(target_dir):
     os.makedirs(target_dir)
 
-# Get key
-with open("key.json", "r") as f:
+# Get key 
+with open("encode_key.json", "r") as f:
     key = json.load(f)
 
 def create_cipher_font(template_dir, 
@@ -68,14 +68,11 @@ def create_cipher_font(template_dir,
     # font and copy them to the new font.
     # Iterate over the key value pairs in the dictionary
     for k in key.keys():
-        old_font.selection.select(k)
+        old_font.selection.select(int(k))
         old_font.copy()
-        new_font.selection.select(key[k])
-        new_font.paste()
-        old_font.selection.select(k.lower())
-        old_font.copy()
-        new_font.selection.select(key[k].lower())
-        new_font.paste()
+        for val in key[k]:
+            new_font.selection.select(int(val))
+            new_font.paste()
 
     new_font.save(font_save_path)
     new_font.generate(f"{new_dir}/{new_name}{font_class}-{emphasis}.ttf")

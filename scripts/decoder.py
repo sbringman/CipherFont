@@ -2,22 +2,18 @@ import json
 import argparse
 
 parser = argparse.ArgumentParser(
-    prog="encoder",
-    description="Encodes a text file for using CipherFont."
+    prog="decoder",
+    description="Decodes a text file for using CipherFont."
 )
 
 parser.add_argument("input_file", nargs="?", default="encoded.txt", help="Input file of encoded text.")
-parser.add_argument("output_file", nargs="?", default="decoded.txt", help="Output file of text to encode.")
+parser.add_argument("output_file", nargs="?", default="decoded.txt", help="Output file decoded text.")
 
 args = parser.parse_args()
 
 # Get key
-with open("key.json", "r") as f:
+with open("decode_key.json", "r") as f:
     key = json.load(f)
-
-decode_key = {}
-for k, val in zip(key.keys(), key.values()):
-    decode_key[val] = k
 
 # Get text
 with open(args.input_file, "r") as f:
@@ -26,21 +22,10 @@ with open(args.input_file, "r") as f:
 # Decode text
 output_string = ""
 for c in input_string:
-    if not c.isalnum():
-        output_string += c
-        continue
-
-    if c.islower():
-        c = c.upper()
-        if c in decode_key.keys():
-            output_string += decode_key[c].lower()
-            continue
+    if str(ord(c)) in key.keys():
+        output_string += chr(key[str(ord(c))])
     else:
-        if c in decode_key.keys():
-            output_string += decode_key[c]
-            continue
-    
-    output_string += c
+        output_string += c
     
 # Write out text
 with open(args.output_file, "w") as f:
